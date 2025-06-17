@@ -77,3 +77,15 @@ window.addEventListener('load', function() {
         }
     }, 1000);
 });
+
+
+
+
+// Dark mode toggle
+const toggleButton = document.getElementById('theme-toggle');
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+
+    // Optional: Change icon based on mode
+    toggleButton.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+});
