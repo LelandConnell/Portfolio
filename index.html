@@ -1,441 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leland Connell -  Student</title>
-    <style>
-    ** {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #5a3e1b; /* dunkles warmes Braun statt Grau */
-    background: linear-gradient(105deg, #ffe8d6 0%, #ffd9b3 100%);
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(255, 243, 228, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    padding: 1rem 0;
-    transition: all 0.3s ease;
-}
-
-nav.scrolled {
-    background: rgba(255, 243, 228, 0.95);
-    box-shadow: 0 2px 20px rgba(90, 62, 27, 0.1);
-}
-
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #d98c5a; /* warmes Orange */
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #7c5631;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-.nav-links a:hover {
-    color: #f9b872;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background: #f9b872;
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #d98c5a;
-    position: relative;
-}
-
-.hero-content {
-    animation: fadeInUp 1s ease;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.2s forwards;
-}
-
-.hero p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.4s forwards;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background: rgba(255, 235, 210, 0.4);
-    color: #7c5631;
-    text-decoration: none;
-    border-radius: 50px;
-    border: 2px solid rgba(255, 184, 108, 0.6);
-    transition: all 0.3s ease;
-    opacity: 0;
-    animation: fadeInUp 1s ease 0.6s forwards;
-}
-
-.cta-button:hover {
-    background: rgba(255, 210, 160, 0.6);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(156, 100, 42, 0.3);
-}
-
-section {
-    padding: 80px 0;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
-}
-
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.section-white {
-    background: #fff7f0;
-}
-
-.section-gray {
-    background: #fff1e6;
-}
-
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #7c5631;
-    position: relative;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    width: 50px;
-    height: 3px;
-    background: #f9b872;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 3rem;
-    align-items: center;
-}
-
-.about-image {
-    text-align: center;
-}
-
-.profile-pic {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, #f9b872, #f7d4a0);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #7c5631;
-    font-size: 4rem;
-    margin: 0 auto;
-    transition: transform 0.3s ease;
-}
-
-.profile-pic:hover {
-    transform: scale(1.05);
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-    color: #a67c50;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.skill-category {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(156, 100, 42, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.skill-category:hover {
-    transform: translateY(-5px);
-}
-
-.skill-category h3 {
-    color: #f9b872;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.skill-tag {
-    background: #f9b872;
-    color: #7c5631;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    transition: transform 0.2s ease;
-}
-
-.skill-tag:hover {
-    transform: scale(1.05);
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(156, 100, 42, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-}
-
-.project-image {
-    height: 200px;
-    background: linear-gradient(45deg, #ffd3b3, #ffdab3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #7c5631;
-    font-size: 3rem;
-}
-
-.project-content {
-    padding: 1.5rem;
-}
-
-.project-content h3 {
-    color: #7c5631;
-    margin-bottom: 1rem;
-}
-
-.project-content p {
-    color: #a67c50;
-    margin-bottom: 1rem;
-}
-
-.project-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.project-link {
-    padding: 0.5rem 1rem;
-    background: #f9b872;
-    color: #7c5631;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-.project-link:hover {
-    background: #d98c5a;
-}
-
-.contact-content {
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    color: #a67c50;
-}
-
-.contact-icon {
-    width: 50px;
-    height: 50px;
-    background: #f9b872;
-    color: #7c5631;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-}
-
-footer {
-    background: #7c5631;
-    color: white;
-    text-align: center;
-    padding: 2rem 0;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero p {
-        font-size: 1.1rem;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .contact-info {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
-
-    h2 {
-        font-size: 2rem;
-    }
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-.download-resume-button {
-    
-  display: inline-block;
-  background-color: #7c563162;
-  color: white;
-  padding: 10px 18px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.download-resume-button:hover {
-  background-color: #e6a825;
-}
-
-</style>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Leland Connell - Student</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">LC</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href = "https://github.com/LelandConnell/Portfolio/raw/refs/heads/main/CV.docx">CV</a></li>
-                </ul>
-            </div>
+<nav id="navbar">
+    <div class="container">
+        <div class="nav-container">
+            <div class="logo">LC</div>
+            <!-- 🌙 Dark Mode Toggle Button -->
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://github.com/LelandConnell/Portfolio/raw/refs/heads/main/CV.docx">CV</a></li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Leland Connell</h1>
-            <p> Student of Digital Design and Production</p>
+            <p> Student of DDPD</p>
             <a href="#contact" class="cta-button">Get In Touch</a>
         </div>
     </section>
@@ -444,13 +40,12 @@ html {
     <section id="about" class="section-white">
         <div class="container">
             <h2>About Me</h2>
-
             <div class="about-content">
                 <div class="about-image">
                     <div class="profile-pic">LC</div>
                 </div>
                 <div class="about-text">
-                    <p>I’m currently studying a T-Level course in Digital Design and Production, where I’ve developed strong Python skills alongside a solid grasp of web technologies like HTML, CSS, and JavaScript.</p>
+                    <p>I’m currently studying a T-Level course in DDPD, where I’ve developed strong Python skills alongside a solid grasp of web technologies like HTML, CSS, and JavaScript.</p>
                     <p>Outside of coding, I enjoy enhancing my knowledge in areas such as mathematics and keeping up with the latest business trends and world news.</p>
                     <p>I’m passionate about writing clean, maintainable code and crafting user experiences that are both practical and enjoyable.</p>
                 </div>
@@ -460,34 +55,33 @@ html {
 
     <!-- Skills Section -->
     <section id="skills" class="section-gray">
-    <div class="container">
-        <h2>Skills & Technologies</h2>
-        <div class="skills-grid">
-        <div class="skill-category">
-            <h3>Frontend Development</h3>
-            <div class="skill-tags">
-            <span class="skill-tag">HTML5</span>
-            <span class="skill-tag">CSS3</span>
-            <span class="skill-tag">JavaScript</span>
+        <div class="container">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools</h3>
+                    <span class="skill-tag">Visual Studio</span>
+                    <span class="skill-tag">GitHub</span>
+                </div>
             </div>
         </div>
-        <div class="skill-category">
-            <h3>Backend Development</h3>
-            <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3>Tools</h3>
-            <span class="skill-tag">Visual Studio</span>
-            <span class="skill-tag">GitHub</span>
-        </div>
-        </div>
-    </div>
     </section>
 
-
-        <!-- Projects Section -->
+    <!-- Projects Section -->
     <section id="projects" class="section-white">
         <div class="container">
             <h2>Featured Projects</h2>
@@ -498,7 +92,7 @@ html {
                         <h3>Collaborative Whiteboard</h3>
                         <p>An interactive whiteboard built with HTML, CSS, and JavaScript. Includes drawing tools, color and size control, undo/redo, and simulated multi-user cursors.</p>
                         <div class="project-links">
-                            <a href="https://lelandconnell.github.io/Collaborate-WhiteBoard/" class="project-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                            <a href="https://lelandconnell.github.io/Collaborate-WhiteBoard/" class="project-link" target="_blank">Live Demo</a>
                             <a href="https://github.com/LelandConnell/Collaborate-WhiteBoard" class="project-link">GitHub</a>
                         </div>
                     </div>
@@ -509,7 +103,7 @@ html {
                         <h3>Portfolio Website</h3>
                         <p>A responsive portfolio website with modern animations and smooth scrolling effects, showcasing various web development projects.</p>
                         <div class="project-links">
-                            <a href="https://lelandconnell.github.io/Portfolio/" class="project-link" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                            <a href="https://lelandconnell.github.io/Portfolio/" class="project-link" target="_blank">Live Demo</a>
                             <a href="https://github.com/LelandConnell/Portfolio" class="project-link">GitHub</a>
                         </div>
                     </div>
@@ -558,91 +152,6 @@ html {
         </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
-
-        // Add some interactive hover effects
-        document.querySelectorAll('.project-card, .skill-category').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        });
-
-        // Add typing effect to hero text (optional enhancement)
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.innerHTML = '';
-            
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            
-            type();
-        }
-
-        // Initialize typing effect when page loads
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const heroTitle = document.querySelector('.hero h1');
-                const heroSubtitle = document.querySelector('.hero p');
-                
-                if (heroTitle && heroSubtitle) {
-                    typeWriter(heroTitle, 'Leland Connell', 150);
-                    setTimeout(() => {
-                        typeWriter(heroSubtitle, 'Student of Digital Design and Production', 50);
-                    }, 2000);
-                }
-            }, 1000);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
